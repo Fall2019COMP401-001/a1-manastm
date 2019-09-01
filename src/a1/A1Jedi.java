@@ -1,5 +1,7 @@
 package a1;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class A1Jedi {
@@ -28,12 +30,16 @@ public class A1Jedi {
 			String fin = scan.next(); 
 			String lname = scan.next(); 
 			int itemcount = scan.nextInt(); 
-			
+			List inamesh = new ArrayList(); 
 			for (int j = 0; j<itemcount; j++) {
 				double itemnumber = Double.valueOf(scan.nextInt()); 
 				String itemname = scan.next();  
+
 				index = itemIndex(itemname, itemnames);
-				camount[index] += 1;
+				if (inamesh.contains(itemname) == false) {
+					camount[index] += 1;
+				}
+				inamesh.add(itemname);
 				iamount[index] += itemnumber; 
 			}
 		}
@@ -54,7 +60,7 @@ public class A1Jedi {
 	
 	static int itemIndex(String itemn, String[] itemstotal) {
 		
-		int index = 0;
+		int index = -1;
 		
 		for (int i =0; i<itemstotal.length; i++) {
 			if (itemstotal[i].contentEquals(itemn)) {
